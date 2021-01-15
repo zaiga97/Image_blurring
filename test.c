@@ -2,6 +2,8 @@
 #include <stdlib.h>
 #include <mpi.h>
 
+void halo_exc(unsigned short *b, int k_s, int blockrows, int blockcols, int sblockrows, int sblockcols, MPI_Comm GRID_COMM_WORLD);
+
 int xsize = 10;
 int ysize = 6;
 unsigned short int *a;
