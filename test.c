@@ -27,7 +27,7 @@ int main(int argc, char **argv) {
     int coords[2];
 	int reorder = 1;
 	dim[0] = 0;
-	dim[1] = 1;
+	dim[1] = 0;
 	period[0] = 0;
 	period[1] = 0;
     MPI_Dims_create(numprocs, 2, dim);
