@@ -416,8 +416,8 @@ int main(int argc, char** argv)
 	int reorder = 1;
 	dim[0] = 0;
 	dim[1] = 0;
-	period[0] = 0;
-	period[1] = 0;
+	period[0] = 1;
+	period[1] = 1;
 
 	MPI_Init(&argc, &argv);
   	MPI_Comm_size(MPI_COMM_WORLD, &numprocs);

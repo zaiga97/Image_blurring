@@ -413,10 +413,10 @@ int main(int argc, char** argv)
 
   	// Inizialize sub images dimensions
   	
-  	/*if (rank != 0)
+  	if (rank != 0)
   	{
   		image = (unsigned short int*)malloc( size * sizeof(char));
-  	}*/
+  	}
 
   	int npcol = dim[0];
   	int nprow = dim[1];

@@ -1,0 +1,54 @@
+#!/bin/bash
+#PBS -l nodes=1:ppn=32
+#PBS -l walltime=1:00:00
+
+
+cd $PBS_O_WORKDIR 
+module load   openmpi/4.0.3/gnu/9.3.0
+
+
+KERT="0"
+K="101"
+
+for procs in 1; do
+	for i in 1 2 3; do
+	/usr/bin/time ./blur_single.x  ${KERT} ${K} "./weak_1000x1000.pgm"
+	done 
+done
+
+
+for procs in 1; do
+	for i in 1 2 3; do
+	/usr/bin/time mpirun  --mca btl '^openib' -np ${procs} -x OMP_NUM_THREADS=2 blur.x  ${KERT} ${K} "./weak_1000x1000.pgm"
+	done 
+done
+
+
+
+for procs in 2; do
+	for i in 1 2 3; do
+	/usr/bin/time mpirun  --mca btl '^openib' -np ${procs} -x OMP_NUM_THREADS=2 blur.x  ${KERT} ${K} "./weak_1414x1414.pgm"
+	done 
+done
+
+
+for procs in 4; do
+	for i in 1 2 3; do
+	/usr/bin/time mpirun  --mca btl '^openib' -np ${procs} -x OMP_NUM_THREADS=2 blur.x  ${KERT} ${K} "./weak_2000x2000.pgm"
+	done 
+done
+
+
+for procs in 8; do
+	for i in 1 2 3; do
+	/usr/bin/time mpirun  --mca btl '^openib' -np ${procs} -x OMP_NUM_THREADS=2 blur.x  ${KERT} ${K} "./weak_2449x2449.pgm"
+	done 
+done
+
+
+for procs in 16; do
+	for i in 1 2 3; do
+	/usr/bin/time mpirun  --mca btl '^openib' -np ${procs} -x OMP_NUM_THREADS=2 blur.x  ${KERT} ${K} "./weak_2828x2828.pgm"
+	done 
+done
+
